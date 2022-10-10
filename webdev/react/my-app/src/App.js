@@ -1,11 +1,15 @@
 import './App.css';
+import EventListener from './components/EventListener';
+import Props from './components/Props';
+// import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      a yo bich helo get a life
+    <div>
+      <Props  name="ashwindgsj"/>  {/* passing props. we can use as much props we want */}
+      <EventListener />
     </div>
-    
+
   );
 }
 
