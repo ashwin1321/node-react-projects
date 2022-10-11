@@ -1,6 +1,7 @@
 import './App.css';
-import RandomQuoteGenerator from './components/RandomQuoteGenerator';
-import UseEffect from './components/UseEffect';
+import CustomTodoApp from './CustomTodoApp';
+// import RandomQuoteGenerator from './components/RandomQuoteGenerator';
+// import UseEffect from './components/UseEffect';
 // import EventListener from './components/EventListener';
 // import Props from './components/Props';
 // import UsingState from './components/UsingState';
@@ -14,9 +15,11 @@ function App() {
     <br /> */}
     {/* <UsingState /> */}
 
-    <RandomQuoteGenerator />
+    {/* <RandomQuoteGenerator />
 
-    <UseEffect />
+    <UseEffect /> */}
+
+    <CustomTodoApp />
     </div>
 
   );
