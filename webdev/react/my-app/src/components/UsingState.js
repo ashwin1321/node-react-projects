@@ -1,14 +1,17 @@
 import React, {useState} from 'react'
 
-const UsingState = () => {
-    const [counter, setCounter] = useState(2342)     /*  yesle chai counter lai 2 value dinxa ani eauta function hunxa*/
-    // var counter = 1
 
+const UsingState = () => {
+    const [counter, setCounter] = useState(0)     /*  yesle chai counter lai 2 value dinxa ani eauta function hunxa*/
+    // var counter = 1
+    
     function increase() {
-        setCounter(counter + 1)
+        // setCounter(counter + 1)
+        setCounter(oldCounterValue => oldCounterValue + 1)
     }
     function decrease() {
-        setCounter(counter - 1)
+        // setCounter(counter - 1)
+        setCounter(oldCounterValue => oldCounterValue - 1)
         if (counter <= 0) {
             setCounter(0)
         }
