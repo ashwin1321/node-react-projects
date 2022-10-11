@@ -1,5 +1,6 @@
 import './App.css';
-import CustomTodoApp from './CustomTodoApp';
+import ReactRouter from './components/ReactRouter';
+// import CustomTodoApp from './CustomTodoApp';
 // import RandomQuoteGenerator from './components/RandomQuoteGenerator';
 // import UseEffect from './components/UseEffect';
 // import EventListener from './components/EventListener';
@@ -18,8 +19,9 @@ function App() {
     {/* <RandomQuoteGenerator />
 
     <UseEffect /> */}
+    {/* <CustomTodoApp /> */}
 
-    <CustomTodoApp />
+    <ReactRouter />
     </div>
 
   );
