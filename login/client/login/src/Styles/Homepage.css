@@ -1,4 +1,6 @@
-
+*{
+    background-color: aliceblue;
+}
  navbar ul{
     margin: 10px;
     display: flex;
@@ -41,11 +43,11 @@ navbar ul li a:hover{
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
     margin: 0 auto;
     margin-top: 100px;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    /* align-items: center; */
+    align-items: center;
 }
 
 h4{
@@ -58,12 +60,13 @@ h4{
     color: red;
 }
 
-#form{
-    float: left;
+form{
+    /* width: 30%; */
+    background-color: white;
 }
 
 label{
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: #000000;
     margin: 10px 0;
@@ -72,12 +75,13 @@ label{
 }
 
 input{
-    width: 60%;
-    height: 50px;
+    width: 170%;
+    height: 40px;
     border: 1px solid #000000;
     border-radius: 5px;
-    padding: 0 10px;
-    margin: 10px 0;
+    padding: 10x 10px;
+    margin-right: -20px;
+    /* margin: 10px 0; */
     background-color: white;
     font-size: 1.2rem;
 } 
@@ -85,4 +89,14 @@ input{
 #button{
     margin: 40px;
     font-size: 1.2rem;
+    width: 40%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(180, 180, 180);
 }
+
+#button:hover{
+    background-color: rgb(235, 74, 74);
+    color: black;
+}
+
