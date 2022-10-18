@@ -1,11 +1,13 @@
 import React from 'react'
 import '../Styles/Homepage.css'
-
+import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    let navigate = useNavigate();
 
   function dataRecieved() {
-    fetch('./login.js')
+    navigate('/login')
   }
   return (
     <div className='mainhead'>
