@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/Dashboard.css";
 // import { useNavigate } from "react-router-dom"; 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [user, setUser] = useState([]);
@@ -39,6 +39,7 @@ const Dashboard = () => {
   // }, [])
 
   useEffect(() => {
+
     const cancelToken = axios.CancelToken;
     const source = cancelToken.source();
 
@@ -67,9 +68,13 @@ const Dashboard = () => {
 
   }, []);
 
+  const navigate = useNavigate();
+  function logout() {
+    navigate("/");
+  }
   return (
     <div>
-      <h1 id="head">Dashboard</h1>
+      <h1 id="hhead">Dashboard</h1>
       <div className="mainn">
         <table>
           <thead>
@@ -116,6 +121,9 @@ const Dashboard = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div>
+        <button id="dash" onClick={logout}>logout</button>
       </div>
     </div>
   );
