@@ -27,10 +27,10 @@ router.post("/crud", async (req, res) => {
 });
 
 router.put("/crud", async (req, res) => {
-  const id = 2;
+  const { name, email, address, phone, age, remarks, Id } = req.body;
   var request = new sql.Request();
   request.query(
-    "update datas set address='america' where id=2",
+    `update datas set name= '${name}', email='${email}', address='${address}', phone=${phone}, age='${age}', remarks= '${remarks}' where id=${Id}`,
     function (err, recordset) {
       if (err) console.log(err);
       console.log("data updated successfully");

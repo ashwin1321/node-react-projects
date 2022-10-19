@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/Dashboard.css";
+// import { useNavigate } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [user, setUser] = useState([]);
@@ -62,6 +64,7 @@ const Dashboard = () => {
       console.log("cleanup");
       source.cancel();
     };
+
   }, []);
 
   return (
@@ -85,10 +88,29 @@ const Dashboard = () => {
                 <td>{item.name}</td>
                 <td>{item.email}</td>
                 <td>
-                  <button id="btn">View</button>
+                  <Link to={`/view/${item.Id}`} state={{
+                    name: item.name,
+                    email: item.email,
+                    address: item.address,
+                    phone: item.phone,
+                    age: item.age,
+                    remarks: item.remarks
+                  }} id="btn">
+                    View
+                  </Link>
                 </td>
                 <td>
-                  <button id="btn">Edit</button>
+                  <Link to={`/edit/${item.Id}`} state={{
+                    name: item.name,
+                    email: item.email,
+                    address: item.address,
+                    phone: item.phone,
+                    age: item.age,
+                    remarks: item.remarks
+                  }}
+                    id="btn">
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}
