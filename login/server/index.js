@@ -1,5 +1,7 @@
 const express = require('express');
-const  router = require('./routes/route');
+const  reactRouter = require('./routes/route');
+const crudRouter = require('./routes/crud');
+const sql = require('./models/config');
 
 const app = express();
 
@@ -13,7 +15,9 @@ app.use(function(req, res, next) {
     next();
     });
 
-app.use('/', router);
+app.use('/', reactRouter);
+app.use('/', crudRouter);
+
 
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
