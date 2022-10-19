@@ -1,13 +1,30 @@
 import React from 'react'
 import '../Styles/Homepage.css'
-import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
+// import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
-  function dataRecieved() {
-    navigate('/login')
+  function dataRecieved(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value
+    const address = document.getElementById('address').value
+    const email = document.getElementById('email').value
+    const phone = document.getElementById('phone').value
+    const age = document.getElementById('age').value
+    const remarks = document.getElementById('remarks').value
+    const data = { name, address, email, phone, age, remarks }
+    
+    axios.post('http://localhost:5000/crud', data)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+   
   }
   return (
     <div className='mainhead'>
@@ -33,35 +50,35 @@ const Homepage = () => {
         <h4>Please, Fill this form</h4>
 
         <br /><br />
-        <form onSubmit={dataRecieved}>
+        <form onSubmit={(e) =>dataRecieved(e)}>
           <label>
             Name: &nbsp;
-            <input type="text" name="name" />
+            <input type="text" name="name" id='name' />
           </label>
           <br />
           <label>
             Email: &nbsp;
-            <input type="text" name="email" />
+            <input type="text" name="email" id='email' />
           </label>
           <br />
           <label>
             Address: &nbsp;
-            <input type="text" name="address" />
+            <input type="text" name="address" id='address'/>
           </label>
           <br />
           <label>
             Phone: &nbsp;
-            <input type="text" name="phone" />
+            <input type="text" name="phone" id='phone' />
           </label>
           <br />
           <label>
             Age: &nbsp;
-            <input type="number" name="age" />
+            <input type="number" name="age" id='age' />
           </label>
           <br />
           <label>
             Remarks: &nbsp;
-            <input type="textarea" name='remarks' />
+            <input type="textarea" name='remarks' id='remarks' />
           </label>
 
           <button id="button">submit</button>
