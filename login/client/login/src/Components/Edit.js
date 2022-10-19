@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import '../Styles/edit.css';
 
 
 const Edit = () => {
@@ -38,47 +39,43 @@ const Edit = () => {
     }
 
     return (
-        <div className='mainhead'>
+        <div className='mainbody'>
 
-            <navbar className='test'>
-                <h1>Update the data </h1>
-            </navbar>
-
-
-            <div className="mainbody">
+            <h1>Update  data </h1>
+            <div className="testbody">
                 <h4>Please, Fill this form</h4>
 
                 <br /><br />
                 <form onSubmit={(e) => dataRecieved(e)}>
                     <label>
-                        Name: &nbsp;
+                        Name: &nbsp; &nbsp; &nbsp;  &nbsp;
+                        <input type="text" name="name" id='name' onChange={handleChange} value={user.name} />
                     </label>
-                    <input type="text" name="name" id='name' onChange={handleChange} value={user.name} />
                     <br />
                     <label>
-                        Email: &nbsp;
+                        Email: &nbsp; &nbsp; &nbsp;
+                        <input type="text" name="email" id='email' onChange={handleChange} value={user.email} />
                     </label>
-                    <input type="text" name="email" id='email' onChange={handleChange} value={user.email} />
                     <br />
                     <label>
-                        Address: &nbsp;
+                        Address:  &nbsp;
+                        <input type="text" name="address" id='address' onChange={handleChange} value={user.address} />
                     </label>
-                    <input type="text" name="address" id='address' onChange={handleChange} value={user.address} />
                     <br />
                     <label>
-                        Phone: &nbsp;
+                        Phone: &nbsp; &nbsp; &nbsp;
+                        <input type="text" name="phone" id='phone' onChange={handleChange} value={user.phone} />
                     </label>
-                    <input type="text" name="phone" id='phone' onChange={handleChange} value={user.phone} />
                     <br />
                     <label>
-                        Age: &nbsp;
+                        Age: &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="number" name="age" id='age' onChange={handleChange} value={user.age} />
                     </label>
-                    <input type="number" name="age" id='age' onChange={handleChange} value={user.age} />
                     <br />
                     <label>
                         Remarks: &nbsp;
+                        <input type="textarea" name='remarks' id='remarks' onChange={handleChange} value={user.remarks} />
                     </label>
-                    <input type="textarea" name='remarks' id='remarks' onChange={handleChange} value={user.remarks} />
 
                     <button id="button">submit</button>
                 </form>
