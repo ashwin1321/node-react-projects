@@ -3,14 +3,15 @@ import axios from "axios";
 import "../Styles/Dashboard.css";
 // import { useNavigate } from "react-router-dom"; 
 import { Link, useNavigate } from "react-router-dom";
+import http from './Http';
 
 const Dashboard = () => {
   const [user, setUser] = useState([]);
   // fetch data only once from server using useEffect hook
   // useEffect(() => {
 
-  //     const abortController = new AbortController();
-  //     const signal = abortController.signal;
+  // const abortController = new AbortController();
+  // const signal = abortController.signal;
 
   //     const getUser = async () => {
   //       try{
@@ -38,38 +39,40 @@ const Dashboard = () => {
 
   // }, [])
 
+  const navigate = useNavigate();
   useEffect(() => {
 
-    const cancelToken = axios.CancelToken;
-    const source = cancelToken.source();
-
-    const getUser = async () => {
+    async function getUser() {
+      console.log("thik xa");
       try {
-        const res = await axios.get("http://localhost:5000/crud", {
-          cancelToken: source.token,
+        console.log("test thik xa");
+
+        const res = await http.get("http://localhost:5000/crud", {
+          headers: {
+            accessToken: sessionStorage.getItem("token"),
+            // console.log("thik xa")
+          }
         });
         const data = await res.data;
         setUser(data);
-        console.log(data);
-      } catch (error) {
+      }
+      catch (error) {
         if (axios.isCancel(error)) {
           console.log("Request canceled", error.message);
         } else {
           console.log("Something went wrong", error.message);
         }
       }
-    };
+    }
     getUser();
 
-    return () => {
-      console.log("cleanup");
-      source.cancel();
-    };
 
   }, []);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   function logout() {
+    // delete the token from the session storage
+    sessionStorage.removeItem("token");
     navigate("/");
   }
   return (

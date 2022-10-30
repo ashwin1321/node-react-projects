@@ -4,6 +4,7 @@ const sql = require('mssql/msnodesqlv8');
 // import swal from 'sweetalert';
 const alert = require('alert');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 // Home Page
@@ -23,16 +24,21 @@ router.post('/login', (req, res) => {
         if (recordset.recordset.length > 0) {
             bcrypt.compare(password, recordset.recordset[0].password, function (err, result) {
                 if (result) {
-                    res.send('Login Success');
+
+                    // using jwt to generate token
+                    const accessToken = jwt.sign({ username: username }, 'mysecretkey');
+                    res.json(accessToken);
+                    // res.send('token generated');
+
                 } else {
-                    alert('Login Failed');
-                    res.status(400).send('Login Failed');
+                    // alert('Login Failed');
+                    res.json({ error: 'Login Failed' });
                 }
             });
         }
         else {
             alert('Login Failed');
-            res.status(400).send('Login Failed');
+            res.json({ error: 'Login Failed' });
         }
     })
 

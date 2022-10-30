@@ -5,7 +5,10 @@ const multer = require('multer')
 const path = require('path')
 const cors = require("cors");
 const alert = require('alert');
+// const validate = require('../validateMiddleware');
+const validateToken = require("../validateMiddleware");
 
+// const app = express();
 // using multer
 
 //! Use of Multer
@@ -22,9 +25,9 @@ const alert = require('alert');
 //   storage: storage
 // });
 
+// app.use(cors());
 
-
-router.get("/crud", async (req, res) => {
+router.get("/crud", validateToken, async (req, res) => {
   var request = new sql.Request();
   request.query("select * from datas", function (err, recordsets) {
     if (err) console.log(err);

@@ -16,9 +16,14 @@ const login = () => {
 
     axios.post('http://localhost:5000/login', data)
       .then(res => {
-        // console.log(res)
-        // redirect(Dashboard)
-        navigate('/dashboard')
+
+        if (res.data.error) {
+          alert("Login Failed")
+
+        } else {
+          sessionStorage.setItem('token', res.data)
+          navigate('/dashboard')
+        }
         // console.log(res.data)
       })
       .catch(err => {
