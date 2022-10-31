@@ -10,7 +10,6 @@ const validateToken = async (req, res, next) => {
     // console.log(accessTokenn)
     if (!accessTokenn) return res.status(401).json({ msg: 'Access Denied' });
 
-
     try {
         const validToken = jwt.verify(accessTokenn, 'mysecretkey');
         if (validToken) {
@@ -18,7 +17,6 @@ const validateToken = async (req, res, next) => {
         }
     }
     catch (err) {
-        res.status(400).json({ msg: 'Invalid Token' });
         res.status(400).json({ msg: 'Invalid Token' });
         console.log(err);
     }

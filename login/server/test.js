@@ -53,8 +53,8 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         // console.log("No file upload");
     } else {
         // console.log(req.file.filename)
-        var imgsrc = 'http://127.0.0.1:3001/images/' + req.file.filename
-        // var imgsrc = "C:\Users\ashwi\OneDrive\Desktop\files\Intern\login\server/public/images/" + req.file.filename
+        console.log(req.body)
+        var imgsrc = 'http://127.0.0.1:3001/images/' + req.body.filename
         const { name, email, address, phone, age, remarks } = req.body;
         console.log(imgsrc, name)
         // var imgsrc = 
@@ -75,6 +75,21 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         );
     }
 });
+
+
+app.get("/getdata", (req, res) => {
+    var request = new sql.Request();
+    request.query(
+        `SELECT * FROM upload`,
+        function (err, recordset) {
+            if (err) console.log(err);
+            console.log("data fetched successfully");
+            // res.send(recordset.recordset);
+            res.send(recordset);
+        }
+    );
+});
+
 
 //create connection
 const PORT = process.env.PORT || 3000

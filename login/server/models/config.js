@@ -7,8 +7,8 @@ const config = {
     options: {
         trustedConnection: true,
         useUTC: false
-    }          
-}       
+    }
+}
 
 sql.connect(config, (err) => {
     if (err) console.log(err);

@@ -5,7 +5,6 @@ const multer = require('multer')
 const path = require('path')
 const cors = require("cors");
 const alert = require('alert');
-// const validate = require('../validateMiddleware');
 const validateToken = require("../validateMiddleware");
 
 // const app = express();
@@ -32,8 +31,6 @@ router.get("/crud", validateToken, async (req, res) => {
   request.query("select * from datas", function (err, recordsets) {
     if (err) console.log(err);
     res.send(recordsets.recordset);
-    // res.json(data);
-    // console.log(recordset)
   });
 });
 
@@ -50,7 +47,6 @@ router.post("/crud", async (req, res) => {
     alert("error! enter data correctly");
   }
 
-
   var request = new sql.Request();
   request.query(
     `insert into datas(name, address, email, phone, age, remarks) values('${name}','${address}','${email}','${phone}',${age},'${remarks}')`,
@@ -62,6 +58,8 @@ router.post("/crud", async (req, res) => {
     }
   );
 });
+
+
 router.put("/crud", async (req, res) => {
   const { name, email, address, phone, age, remarks, Id } = req.body;
   var request = new sql.Request();
@@ -75,3 +73,4 @@ router.put("/crud", async (req, res) => {
 });
 
 module.exports = router;
+

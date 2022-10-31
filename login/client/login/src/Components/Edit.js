@@ -17,6 +17,7 @@ const Edit = () => {
 
     useEffect(() => {
         setUser({ name: name, email: email, address: address, phone: phone, age: age, remarks: remarks })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
