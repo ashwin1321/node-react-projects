@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Styles/Homepage.css'
 import axios from 'axios';
 // import { Formik, Form, Field, ErrorMessage } from 'formik'
@@ -16,17 +16,50 @@ const Homepage = () => {
     remarks: ""
   };
 
+  const [file, setFile] = useState();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [fileName, setFileName] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [name, setName] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [email, setEmail] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [address, setAddress] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [phone, setPhone] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [age, setAge] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [remarks, setRemarks] = useState("")
+
+  const saveFile = (e) => {
+    setFile(e.target.files[0]);
+    setFileName(e.target.files[0].name);
+  };
+
+
   function dataRecieved(e) {
     e.preventDefault();
-    const name = document.getElementById('name').value
-    const address = document.getElementById('address').value
-    const email = document.getElementById('email').value
-    const phone = document.getElementById('phone').value
-    const age = document.getElementById('age').value
-    const remarks = document.getElementById('remarks').value
-    const data = { name, address, email, phone, age, remarks }
+    // const name = document.getElementById('name').value
+    // const address = document.getElementById('address').value
+    // const email = document.getElementById('email').value
+    // const phone = document.getElementById('phone').value
+    // const age = document.getElementById('age').value
+    // const remarks = document.getElementById('remarks').value
+    // const data = { name, address, email, phone, age, remarks }
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("fileName", fileName);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("address", address);
+    formData.append("phone", phone);
+    formData.append("age", age);
+    formData.append("remarks", remarks);
 
-    axios.post('http://localhost:5000/crud', data)
+
+
+    axios.post('http://localhost:5000/crud', formData)
       .then(res => {
         console.log(res)
       })
@@ -149,8 +182,8 @@ const Homepage = () => {
               <input type="text"
                 name="name"
                 id='name'
-                value={formValues.name}
                 onChange={(e) => {
+                  setName(e.target.value);
                   validateName(e.target.value);
                   setFormValues({ ...formValues, name: e.target.value });
                 }} />
@@ -165,8 +198,8 @@ const Homepage = () => {
                 type="email"
                 name="email"
                 id="email"
-                value={formValues.email}
                 onChange={(e) => {
+                  setEmail(e.target.value)
                   validateEmail(e.target.value);
                   setFormValues({ ...formValues, email: e.target.value });
                 }}
@@ -182,8 +215,8 @@ const Homepage = () => {
                 type="text"
                 name="address"
                 id="address"
-                value={formValues.address}
                 onChange={(e) => {
+                  setAddress(e.target.value)
                   validateAddress(e.target.value);
                   setFormValues({ ...formValues, address: e.target.value });
                 }}
@@ -199,8 +232,8 @@ const Homepage = () => {
                 type="phone"
                 name="phone"
                 id="phone"
-                value={formValues.phone}
                 onChange={(e) => {
+                  setPhone(e.target.value)
                   validatePhone(e.target.value);
                   setFormValues({ ...formValues, phone: e.target.value });
                 }}
@@ -216,8 +249,8 @@ const Homepage = () => {
                 type="age"
                 name="age"
                 id="age"
-                value={formValues.age}
                 onChange={(e) => {
+                  setAge(e.target.value);
                   validateAge(e.target.value);
                   setFormValues({ ...formValues, age: e.target.value });
                 }}
@@ -228,7 +261,12 @@ const Homepage = () => {
 
           <label>
             Remarks: &nbsp;
-            <input type="textarea" name='remarks' id='remarks' />
+            <input type="textarea" name='remarks' id='remarks' onChange={(e) => setRemarks(e.target.value)} />
+          </label>
+
+          <label>
+            fileUpload:
+            <input type="file" name="image" onChange={saveFile} />
           </label>
 
           <button id="button">submit</button>
