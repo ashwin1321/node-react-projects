@@ -1,30 +1,30 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 
 
 const UsingState = () => {
-    const [counter, setCounter] = useState(0)     /*  yesle chai counter lai 2 value dinxa ani eauta function hunxa*/
-    
-   
-    
-    function increase() {
-        // setCounter(counter + 1)
-        setCounter(oldCounterValue => oldCounterValue + 1)
+  const [counter, setCounter] = useState(0)     /*  yesle chai counter lai 2 value dinxa ani eauta function hunxa*/
+
+
+
+  function increase() {
+    // setCounter(counter + 1)
+    setCounter(oldCounterValue => oldCounterValue + 1)
+  }
+  function decrease() {
+    // setCounter(counter - 1)
+    setCounter(oldCounterValue => oldCounterValue - 1)
+    if (counter <= 0) {
+      setCounter(0)
     }
-    function decrease() {
-        // setCounter(counter - 1)
-        setCounter(oldCounterValue => oldCounterValue - 1)
-        if (counter <= 0) {
-            setCounter(0)
-        }
-    }
+  }
   return (
     <>
-    <h1>UsingState</h1>
-    <h1>counter : {counter}</h1>
-    <button onClick={increase}>increase</button> 
-    <button onClick={decrease}>decrease</button>
+      <h1>UsingState</h1>
+      <h1>counter : {counter}</h1>
+      <button onClick={increase}>increase</button>
+      <button onClick={decrease}>decrease</button>
 
-  </>
+    </>
   )
 }
 

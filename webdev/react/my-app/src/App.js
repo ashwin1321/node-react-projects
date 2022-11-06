@@ -1,6 +1,6 @@
 import './App.css';
 import ReactRouter from './components/ReactRouter';
-// import CustomTodoApp from './CustomTodoApp';
+import CustomTodoApp from './CustomTodoApp';
 // import RandomQuoteGenerator from './components/RandomQuoteGenerator';
 // import UseEffect from './components/UseEffect';
 // import EventListener from './components/EventListener';
@@ -14,14 +14,14 @@ function App() {
       {/* <Props  name="ashwindgsj"/>  passing props. we can use as much props we want */}
       {/* <EventListener />
     <br /> */}
-    {/* <UsingState /> */}
+      {/* <UsingState /> */}
 
-    {/* <RandomQuoteGenerator />
+      {/* <RandomQuoteGenerator />
 
     <UseEffect /> */}
-    {/* <CustomTodoApp /> */}
+      <CustomTodoApp />
 
-    <ReactRouter />
+      <ReactRouter />
     </div>
 
   );
