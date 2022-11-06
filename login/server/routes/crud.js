@@ -37,7 +37,8 @@ router.get("/crud", validateToken, async (req, res) => {
 router.post("/crud", upload.single("image"), async (req, res) => {
   // const { name, email, address, phone, age, remarks } = req.body;
   console.log(req.body)
-  var imgsrc = 'http://127.0.0.1:3001/images/' + req.body.filename
+  var imgsrc = 'http://127.0.0.1:3001/images/' + req.file.filename
+  var imgsrc = req.file.filename
   const { name, email, address, phone, age, remarks } = req.body;
   console.log(imgsrc, name)
   if (!name || !email || !address || !phone || !age || !remarks) {

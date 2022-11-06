@@ -11,7 +11,7 @@ const Register = () => {
         const username = document.getElementById('uname').value
         const password = document.getElementById('pass').value
         const data = { username, password }
-
+        console.log(data);
         if (username === '' || password === '') {
             alert('Please fill all the fields')
         } else {

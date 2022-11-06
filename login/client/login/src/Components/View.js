@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate, useLocation, useParams, } from "react-router-dom";
 import '../Styles/View.css'
+
 const View = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const location = useLocation();
   const { name, address, email, phone, age, remarks } = location.state;
-  console.log(location.state)
 
   function goto() {
     navigate('/dashboard')
@@ -23,7 +23,7 @@ const View = () => {
           Email: {email} <br />
           Phone: {phone} <br />
           Age: {age} <br />
-          Remarks: {remarks}
+          Remarks: {remarks} <br />
         </pre>
         <br />
         <button onClick={goto}>Dashboard</button>

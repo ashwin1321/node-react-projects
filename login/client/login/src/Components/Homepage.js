@@ -31,6 +31,8 @@ const Homepage = () => {
   const [age, setAge] = useState("");
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [remarks, setRemarks] = useState("")
+  const [formValues, setFormValues] = React.useState(initialValues);
+  const [formErrors, setFormErrors] = React.useState({});
 
   const saveFile = (e) => {
     setFile(e.target.files[0]);
@@ -58,7 +60,6 @@ const Homepage = () => {
     formData.append("remarks", remarks);
 
 
-
     axios.post('http://localhost:5000/crud', formData)
       .then(res => {
         console.log(res)
@@ -68,8 +69,7 @@ const Homepage = () => {
       })
   }
 
-  const [formValues, setFormValues] = React.useState(initialValues);
-  const [formErrors, setFormErrors] = React.useState({});
+
 
   // from validation for the code below
   const validateName = (name) => {
@@ -283,3 +283,7 @@ const Homepage = () => {
 
 
 export default Homepage
+
+
+// const base64String = btoa(String.fromCharCode(...new Uint8Array(img)));
+  // console.log(base64String);

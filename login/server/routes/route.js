@@ -41,48 +41,48 @@ router.post('/login', (req, res) => {
             res.json({ error: 'Login Failed' });
         }
     })
+})
 
-    router.post('/register', (req, res) => {
 
-        const { username, password } = req.body;
-        // check in the database id the username exists or not
-        // console.log(username, password);
+router.post('/register', (req, res) => {
 
-        // encrypting the password
-        const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bcrypt.hashSync(password, salt);
-        // console.log(hash);
+    const { username, password } = req.body;
+    // check in the database id the username exists or not
+    // console.log(username, password);
 
-        var request = new sql.Request();
-        // console.log("object");
-        request.query(
-            `select username from details where  username='${username}'`,
-        )
-            .then((result) => {
-                // console.log("first")
-                // if (result.length > 0) {
-                // console.log(result.recordset.length);
-                if (result.recordset.length == 0) {
-                    // insert the username and password to the database
-                    var request = new sql.Request();
-                    request.query(
-                        `insert into details(username, password) values('${username}','${hashedPassword}')`,
-                        function (err, recordset) {
-                            if (err) console.log(err);
-                            // res.send(recordset.recordset);
-                            // res.send(recordset);
-                            console.log("data inserted successfully");
-                        }
-                    );
-                    res.send('Register Success');
-                } else {
-                    alert("Username already exists");
-                    console.log("errorrr")
-                    res.status(400).send('User already exists');
-                }
-            })
-    })
+    // encrypting the password
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    // console.log(hash);
 
-});
+    var request = new sql.Request();
+    // console.log("object");
+    request.query(
+        `select username from details where  username='${username}'`,
+    )
+        .then((result) => {
+            // console.log("first")
+            // if (result.length > 0) {
+            // console.log(result.recordset.length);
+            if (result.recordset.length == 0) {
+                // insert the username and password to the database
+                var request = new sql.Request();
+                request.query(
+                    `insert into details(username, password) values('${username}','${hashedPassword}')`,
+                    function (err, recordset) {
+                        if (err) console.log(err);
+                        // res.send(recordset.recordset);
+                        // res.send(recordset);
+                        console.log("data inserted successfully");
+                    }
+                );
+                res.send('Register Success');
+            } else {
+                alert("Username already exists");
+                console.log("errorrr")
+                res.status(400).send('User already exists');
+            }
+        })
+})
 
 module.exports = router;

@@ -102,7 +102,8 @@ const Dashboard = () => {
                     address: item.address,
                     phone: item.phone,
                     age: item.age,
-                    remarks: item.remarks
+                    remarks: item.remarks,
+                    img: item.img
                   }} id="btn">
                     View
                   </Link>
