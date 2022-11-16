@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Styles/Login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,11 @@ const login = () => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigate = useNavigate();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [formErrorUname, setFormErrorUname] = useState("");
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [formErrorPass, setFormErrorPass] = useState("");
 
   async function loginn(e) {
     e.preventDefault();
@@ -17,21 +22,14 @@ const login = () => {
 
     axios.post('http://localhost:5000/login', data)
       .then(res => {
-        // console.log(res.data);
-
-        if (res.data.msg) {
-          alert('please fill all the fields...')
-        }
-
         if (res.data.userError) {
-          alert("User not found")
+          // alert("User not found")
+          setFormErrorUname('User not found! please register')
         }
         else if (res.data.passwordError) {
-          alert("Incorrect Password! Try again")
+          setFormErrorPass('Incorrect Password! Try again')
         }
         else {
-          // alert("Login Successfull")
-          // sessionStorage.setItem('token', res.data)
           navigate('/otp')
         }
 
@@ -49,7 +47,9 @@ const login = () => {
 
         <form id='form' onSubmit={(e) => loginn(e)}>
           <input type="text" placeholder="Username" className='username' id="uname" /> <br />
+          <p style={{ color: 'red' }}>{formErrorUname}</p>
           <input type="password" placeholder="Password" className='password' id="pass" />
+          <p style={{ color: 'red' }}>{formErrorPass}</p>
           <br />
           <button type="submit">Login</button>
         </form>

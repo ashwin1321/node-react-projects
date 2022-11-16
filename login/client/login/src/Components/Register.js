@@ -1,24 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Styles/Login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const Register = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     let navigate = useNavigate();
+    const [user, setUser] = useState([]);
+    const [formValues, setFormValues] = useState();
+
 
     function loginn(e) {
         e.preventDefault();
         const username = document.getElementById('uname').value
         const password = document.getElementById('pass').value
         const data = { username, password }
+
+
         console.log(data);
+
         if (username === '' || password === '') {
             alert('Please fill all the fields')
         } else {
             axios.post('http://localhost:5000/register', data)
                 .then(res => {
                     if (res.data.userExists) {
-                        alert('Username already exists please try another one')
+                        // alert('User already exists')
+                        setFormValues('Username already exists please try another one')
+                        // alert('Username already exists please try another one')
                     }
                     else {
                         alert('Register Success')
@@ -40,7 +48,9 @@ const Register = () => {
                 <h4>Please Register</h4>
 
                 <form id='form' onSubmit={(e) => loginn(e)}>
-                    <input type="text" placeholder="enter your username" className='username' id="uname" /> <br />
+                    <input type="text" placeholder="enter your username" className='username' id="uname" onChange={(e) => {
+                    }} /> <br />
+                    <p style={{ color: 'red' }}>{formValues}</p>
                     <input type="password" placeholder="enter your password" className='password' id="pass" />
                     <br />
                     <button type="submit">Register</button>

@@ -7,6 +7,7 @@ const Otp = () => {
 
     const navigate = useNavigate();
     const [otp, setOtp] = useState("");
+    const [otpError, setOtpError] = useState("");
 
     function otpCheck(e) {
         e.preventDefault();
@@ -17,8 +18,9 @@ const Otp = () => {
 
         axios.post('http://localhost:5000/otp', data)
             .then(res => {
-                if (res.data.error) {
-                    alert("Wrong OTP")
+                if (res.data.otpError) {
+                    // alert("Wrong OTP")
+                    setOtpError('Wrong OTP! Try again')
                 }
                 else {
                     // alert("Login Successfull")
@@ -41,6 +43,7 @@ const Otp = () => {
                 <input type="text" name="otp" placeholder='insert your OTP here' onChange={(e) => {
                     setOtp(e.target.value)
                 }} /> <br />
+                <p style={{ color: 'red' }}>{otpError}</p>
                 <button id='btn'>Submit</button>
             </form>
 

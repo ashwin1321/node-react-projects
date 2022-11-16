@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import '../Styles/Homepage.css'
 import axios from 'axios';
-// import { Formik, Form, Field, ErrorMessage } from 'formik'
-// import { useNavigate } from 'react-router-dom'
 const Homepage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   // let navigate = useNavigate();

@@ -133,7 +133,7 @@ router.post('/otp', (req, res) => {
         res.json(accessToken);
         // res.send('Login Success');
     } else {
-        res.send('Wrong OTP');
+        res.json({ otpError: 'Wrong OTP' });
     }
 })
 
