@@ -8,7 +8,7 @@ import http from './Http';
 const Dashboard = () => {
   const [user, setUser] = useState([]);
   const [page, setPage] = useState(4);
-  const [activePage, setActivePage] = useState(1);
+  const [activePage, setActivePage] = useState(0);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -132,14 +132,14 @@ const Dashboard = () => {
 
       <br /><br /><br />
       <div className="pagination">
-        <button id="pagination" onClick={() => setActivePage(1)}>1</button>
-        <button id="pagination" onClick={() => setActivePage(2)} >2</button>
-        <button id="pagination" onClick={() => setActivePage(3)}>3</button>
-        <button id="pagination" onClick={() => setActivePage(4)}>4</button>
-        <button id="pagination" onClick={() => setActivePage(5)}>5</button>
-        <button id="pagination" onClick={() => setActivePage(6)}>6</button>
-        <button id="pagination" onClick={() => setActivePage(7)}>7</button>
-        <button id="pagination" onClick={() => setActivePage(8)}>8</button>
+        <button id="pagination" onClick={() => setActivePage(0)}>1</button>
+        <button id="pagination" onClick={() => setActivePage(5)} >2</button>
+        <button id="pagination" onClick={() => setActivePage(10)}>3</button>
+        <button id="pagination" onClick={() => setActivePage(15)}>4</button>
+        <button id="pagination" onClick={() => setActivePage(20)}>5</button>
+        <button id="pagination" onClick={() => setActivePage(25)}>6</button>
+        <button id="pagination" onClick={() => setActivePage(30)}>7</button>
+        <button id="pagination" onClick={() => setActivePage(35)}>8</button>
 
       </div>
     </div>

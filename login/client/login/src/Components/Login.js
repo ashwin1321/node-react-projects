@@ -19,8 +19,15 @@ const login = () => {
       .then(res => {
         // console.log(res.data);
 
-        if (res.data.error) {
-          alert("Wrong Credentials")
+        if (res.data.msg) {
+          alert('please fill all the fields...')
+        }
+
+        if (res.data.userError) {
+          alert("User not found")
+        }
+        else if (res.data.passwordError) {
+          alert("Incorrect Password! Try again")
         }
         else {
           // alert("Login Successfull")

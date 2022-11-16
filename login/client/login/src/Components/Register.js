@@ -17,12 +17,18 @@ const Register = () => {
         } else {
             axios.post('http://localhost:5000/register', data)
                 .then(res => {
-                    console.log("success");
+                    if (res.data.userExists) {
+                        alert('Username already exists please try another one')
+                    }
+                    else {
+                        alert('Register Success')
+                        navigate('/login')
+                    }
                 })
                 .catch(err => {
                     console.log(err)
                 })
-            navigate('/login')
+
         }
     }
     return (

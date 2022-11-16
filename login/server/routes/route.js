@@ -22,6 +22,10 @@ router.post('/login', (req, res) => {
 
     const { username, password } = req.body;
 
+    // if (!username || !password) {
+    //     res.status(400).json({ msg: 'Please enter all fields' });
+    // }
+
     var request = new sql.Request();
     request.query(`select * from details where username='${username}'`, function (err, recordset) {
 
@@ -29,9 +33,6 @@ router.post('/login', (req, res) => {
         if (recordset.recordset.length > 0) {
             bcrypt.compare(password, recordset.recordset[0].password, function (err, result) {
                 if (result) {
-
-
-
                     let mailTransporter = nodemailer.createTransport({
                         service: 'Outlook365',
                         auth: {
@@ -69,13 +70,14 @@ router.post('/login', (req, res) => {
                 } else {
                     // alert('Login Failed');
                     console.log(`Login Failed`);
-                    res.json({ error: 'Login Failed' });
+                    res.json({ passwordError: 'Wrong Passowrd' });
                 }
             });
         }
+
         else {
-            alert('Login Failed');
-            res.json({ error: 'Login Failed' });
+            // alert('Login Failed');
+            res.json({ userError: 'User doesnot exist...' });
         }
     })
 })
@@ -98,9 +100,6 @@ router.post('/register', (req, res) => {
         `select username from details where  username='${username}'`,
     )
         .then((result) => {
-            // console.log("first")
-            // if (result.length > 0) {
-            // console.log(result.recordset.length);
             if (result.recordset.length == 0) {
                 // insert the username and password to the database
                 var request = new sql.Request();
@@ -115,9 +114,9 @@ router.post('/register', (req, res) => {
                 );
                 res.send('Register Success');
             } else {
-                alert("Username already exists");
+                // alert("Username already exists");
                 console.log("errorrr")
-                res.status(400).send('User already exists');
+                res.json({ userExists: 'User already exists' });
             }
         })
 })
