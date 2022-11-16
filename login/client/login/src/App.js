@@ -5,6 +5,7 @@ import Login from "./Components/Login";
 import View from "./Components/View";
 import Edit from "./Components/Edit";
 import Register from "./Components/Register";
+import Otp from "./Components/Otp";
 // import Test from "./Test";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/view/:id" element={<View />} />
           <Route exact path="/edit/:id" element={<Edit />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/otp" element={<Otp />} />`
         </Routes>
       </BrowserRouter>
     </>

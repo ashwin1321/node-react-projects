@@ -6,25 +6,28 @@ import { useNavigate } from 'react-router-dom';
 const login = () => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
-  function loginn(e) {
+  async function loginn(e) {
     e.preventDefault();
     const username = document.getElementById('uname').value
     const password = document.getElementById('pass').value
-    const data = { username, password }
+    const genetatedOtp = Math.floor(1000 + Math.random() * 9000)
+    const data = { username, password, genetatedOtp }
 
     axios.post('http://localhost:5000/login', data)
       .then(res => {
+        // console.log(res.data);
 
         if (res.data.error) {
-          alert("Login Failed")
-
-        } else {
-          sessionStorage.setItem('token', res.data)
-          navigate('/dashboard')
+          alert("Wrong Credentials")
         }
-        // console.log(res.data)
+        else {
+          // alert("Login Successfull")
+          // sessionStorage.setItem('token', res.data)
+          navigate('/otp')
+        }
+
       })
       .catch(err => {
         console.log(err)

@@ -27,11 +27,37 @@ var upload = multer({
 // app.use(cors());
 
 router.get("/crud", validateToken, async (req, res) => {
+
   var request = new sql.Request();
-  request.query("select * from datas", function (err, recordsets) {
-    if (err) console.log(err);
-    res.send(recordsets.recordset);
-  });
+  var page = req.query.page;
+  var limit = req.query.limit;
+  var search = req.query.search;
+  var page1 = parseInt(page);
+  var limit1 = parseInt(limit);
+
+  console.log(search);
+
+  if (search == "") {
+    request.query(`select * from datas order by Id offset ${page1} rows fetch next ${limit1} rows only`, function (err, recordset) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.send(recordset.recordset);
+      }
+    });
+  }
+  else {
+    request.query(`select * from datas where name like '%${search}%' order by Id offset ${page1} rows fetch next ${limit1} rows only  `, function (err, recordset) {
+      // single data gako xaina
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.send(recordset.recordset);
+      }
+    });
+  }
 });
 
 router.post("/crud", upload.single("image"), async (req, res) => {

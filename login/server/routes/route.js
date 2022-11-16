@@ -5,9 +5,14 @@ const sql = require('mssql/msnodesqlv8');
 const alert = require('alert');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const nodemailer = require('nodemailer');
 
 // Home Page
+
+// generate random otp
+const genetatedOtp = Math.floor(1000 + Math.random() * 9000)
+
+// var genetatedOtp;
 
 router.get('/', (req, res) => {
     res.send('Welcome to backend server');
@@ -25,13 +30,45 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, recordset.recordset[0].password, function (err, result) {
                 if (result) {
 
+
+
+                    let mailTransporter = nodemailer.createTransport({
+                        service: 'Outlook365',
+                        auth: {
+                            user: 'testgentech@outlook.com',
+                            pass: 'gentech@123'
+                        }
+                    });
+
+                    let mailDetails = {
+                        from: 'testgentech@outlook.com',
+                        to: recordset.recordset[0].username,
+                        subject: 'otp for login',
+                        text: `Your OTP is ${genetatedOtp}`
+                    };
+
+                    mailTransporter.sendMail(mailDetails, function (err, data) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log('Email sent successfully');
+                        }
+                    });
+
+                    console.log("ya samma ta thik xa");
+
+
+
+                    // generate random 4 digit otp
+
                     // using jwt to generate token
-                    const accessToken = jwt.sign({ username: username }, 'mysecretkey');
-                    res.json(accessToken);
-                    // res.send('token generated');
+                    // const accessToken = jwt.sign({ username: username }, 'mysecretkey');
+                    // res.json(accessToken);
+                    res.send('Opt sent to your email');
 
                 } else {
                     // alert('Login Failed');
+                    console.log(`Login Failed`);
                     res.json({ error: 'Login Failed' });
                 }
             });
@@ -84,5 +121,22 @@ router.post('/register', (req, res) => {
             }
         })
 })
+
+
+router.post('/otp', (req, res) => {
+    // generate random 4 digit otp
+
+
+    const { otp } = req.body;
+    console.log(otp);
+    if (otp == genetatedOtp) {
+        const accessToken = jwt.sign({ otp }, 'mysecretkey');
+        res.json(accessToken);
+        // res.send('Login Success');
+    } else {
+        res.send('Wrong OTP');
+    }
+})
+
 
 module.exports = router;
