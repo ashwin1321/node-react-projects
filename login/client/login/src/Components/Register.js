@@ -48,10 +48,10 @@ const Register = () => {
                 <h4>Please Register</h4>
 
                 <form id='form' onSubmit={(e) => loginn(e)}>
-                    <input type="text" placeholder="enter your username" className='username' id="uname" onChange={(e) => {
+                    <input type="email" placeholder="enter your email" className='username' id="uname" required onChange={(e) => {
                     }} /> <br />
                     <p style={{ color: 'red' }}>{formValues}</p>
-                    <input type="password" placeholder="enter your password" className='password' id="pass" />
+                    <input type="password" placeholder="enter your password" className='password' id="pass" required />
                     <br />
                     <button type="submit">Register</button>
                 </form>

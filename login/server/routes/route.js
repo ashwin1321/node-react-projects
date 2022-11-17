@@ -12,6 +12,8 @@ const nodemailer = require('nodemailer');
 // generate random otp
 const genetatedOtp = Math.floor(1000 + Math.random() * 9000)
 
+const genetatedOtpRegister = Math.floor(1000 + Math.random() * 9000)
+
 // var genetatedOtp;
 
 router.get('/', (req, res) => {
@@ -36,13 +38,13 @@ router.post('/login', (req, res) => {
                     let mailTransporter = nodemailer.createTransport({
                         service: 'Outlook365',
                         auth: {
-                            user: 'testgentech@outlook.com',
+                            user: 'techgentest@outlook.com',
                             pass: 'gentech@123'
                         }
                     });
 
                     let mailDetails = {
-                        from: 'testgentech@outlook.com',
+                        from: 'techgentest@outlook.com',
                         to: recordset.recordset[0].username,
                         subject: 'otp for login',
                         text: `Your OTP is ${genetatedOtp}`
@@ -101,7 +103,7 @@ router.post('/register', (req, res) => {
     )
         .then((result) => {
             if (result.recordset.length == 0) {
-                // insert the username and password to the database
+
                 var request = new sql.Request();
                 request.query(
                     `insert into details(username, password) values('${username}','${hashedPassword}')`,

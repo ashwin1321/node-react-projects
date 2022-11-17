@@ -6,6 +6,8 @@ import View from "./Components/View";
 import Edit from "./Components/Edit";
 import Register from "./Components/Register";
 import Otp from "./Components/Otp";
+import OtpRegister from "./Components/OtpRegister";
+import FormFill from "./Components/FormFill";
 // import Test from "./Test";
 
 function App() {
@@ -21,7 +23,10 @@ function App() {
           <Route exact path="/view/:id" element={<View />} />
           <Route exact path="/edit/:id" element={<Edit />} />
           <Route exact path="/register" element={<Register />} />
-          <Route exact path="/otp" element={<Otp />} />`
+          <Route exact path="/otp" element={<Otp />} />
+          <Route exact path="/otpRegister" element={<OtpRegister />} />
+          <Route exact path="/formfill" element={<FormFill />} />
+
         </Routes>
       </BrowserRouter>
     </>

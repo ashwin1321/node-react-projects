@@ -7,22 +7,6 @@ const cors = require("cors");
 const alert = require('alert');
 const validateToken = require("../validateMiddleware");
 
-// const app = express();
-// using multer
-
-// ! Use of Multer
-var storage = multer.diskStorage({
-  destination: (req, file, callBack) => {
-    callBack(null, './public/images/')     // './public/images/' directory name where save the file
-  },
-  filename: (req, file, callBack) => {
-    callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-  }
-})
-
-var upload = multer({
-  storage: storage
-});
 
 // app.use(cors());
 
@@ -60,13 +44,10 @@ router.get("/crud", validateToken, async (req, res) => {
   }
 });
 
-router.post("/crud", upload.single("image"), async (req, res) => {
-  // const { name, email, address, phone, age, remarks } = req.body;
-  console.log(req.body)
-  var imgsrc = 'http://127.0.0.1:3001/images/' + req.file.filename
-  var imgsrc = req.file.filename
+router.post("/crud", async (req, res) => {
   const { name, email, address, phone, age, remarks } = req.body;
-  console.log(imgsrc, name)
+  console.log(req.body);
+
   if (!name || !email || !address || !phone || !age || !remarks) {
     // console.log("error");
     alert("Please fill all the fields");
@@ -80,12 +61,16 @@ router.post("/crud", upload.single("image"), async (req, res) => {
 
   var request = new sql.Request();
   request.query(
-    `insert into datas(name, address, email, phone, age, remarks, img) values('${name}','${address}','${email}','${phone}',${age},'${remarks}', CONVERT(VARBINARY, '${imgsrc}'))`,
+    `insert into datas(name, address, email, phone, age, remarks) values('${name}','${address}','${email}','${phone}',${age},'${remarks}')`,
     function (err, recordset) {
-      if (err) console.log(err);
-      // res.send(recordset.recordset);
-      // res.send(recordset);
-      console.log("data inserted successfully");
+      if (err) {
+        console.log(err);
+        res.json({ msg: "error" });
+      }
+      else {
+        res.send("data inserted");
+      }
+
     }
   );
 });

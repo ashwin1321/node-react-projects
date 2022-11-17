@@ -1,20 +1,24 @@
-*{
+* {
     background-color: aliceblue;
 }
- navbar ul{
+
+.homepage ul {
     margin: 10px;
-    display: flex;
-    float: right;;
+    /* display: flex; */
+    float: right;
+    list-style-type: none;
     background-color: aliceblue;
 
 }
-navbar ul li{
+
+homepage ul li {
     list-style: none;
     margin: 15px 10px;
     font-size: 1.2rem;
 
 }
-#abc{
+
+#abc {
     background-color: aliceblue;
     color: #d96459;
     font-size: 2.5rem;
@@ -22,24 +26,26 @@ navbar ul li{
     font-style: bold;
 }
 
-navbar ul li a{
+.homepage ul li a {
     display: block;
-    padding: 3px 22px;
+    padding: 15px 10px;
+    margin: 40px;
     border-radius: 10px;
     border: 2px solid black;
     text-decoration: none;
     color: black;
-    background-color: #d8d5d5; 
+    background-color: #d8d5d5;
 
- }
-navbar ul li a:hover{
+}
+
+.homepage ul li a:hover {
     color: black;
     background-color: #d96459;
     text-align: center;
-  
-} 
 
- 
+}
+
+
 /* .mainbody{
     width: 1000px;
     height: 1000px;
@@ -53,27 +59,27 @@ navbar ul li a:hover{
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    /* align-items: center; */
+/* align-items: center; */
 /* }  */
 
-.changes{
-   
+.changes {
+
     width: 1000px;
     height: 800px;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     margin: 25px auto;
     margin-top: 100px;
     padding: 30px;
-    padding-right: -50px ;
+    padding-right: -50px;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
 }
 
-h4{
+h4 {
     font-size: 2rem;
     font-weight: 500;
     margin-bottom: 10px;
@@ -83,22 +89,22 @@ h4{
     color: #d96459;
 }
 
-form{
+form {
     /* width: 30%; */
     background-color: white;
-    
+
 }
 
-label{
+label {
     font-size: 1.2rem;
     font-weight: 500;
     color: #000000;
     margin: 10px 0;
-     display: block;
+    display: block;
     background-color: white;
 }
 
-input{
+input {
     width: 170%;
     height: 40px;
     border: 1px solid #000000;
@@ -108,9 +114,9 @@ input{
     /* margin: 10px 0; */
     background-color: white;
     font-size: 1.2rem;
-} 
+}
 
-#button{
+#button {
     margin: 40px;
     font-size: 1.2rem;
     width: 40%;
@@ -119,8 +125,32 @@ input{
     background-color: rgb(180, 180, 180);
 }
 
-#button:hover{
+#button:hover {
     background-color: #d96459;
     color: black;
 }
 
+/* .homepage,
+ul,
+li,
+a {
+    background-color: white;
+} */
+
+
+.homepage {
+
+    width: 700px;
+    height: 500px;
+    /* background-color: #ffffff; */
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    margin: 25px auto;
+    margin-top: 100px;
+    padding: 30px;
+    padding-right: -50px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
